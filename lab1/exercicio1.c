@@ -1,5 +1,5 @@
 /* 
-    Laboratório 1 - Estrutura de Dados
+    Laboratório 1 - Estrutura de Dados | Exercicio 1
     Aluno: Paulo Ricardo Klaudat Neto
 */
 #include<stdio.h>
