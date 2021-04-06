@@ -17,6 +17,11 @@ int main(void) {
   
     imprimirFuncionario(&funcionarios);
     salarioTotal(&funcionarios);
+    buscaFuncionario(&funcionarios,"Pedro");
+    criarFuncionario(&funcionarios);
+    alterarCargo(&funcionarios,"Pedro","Pedreiro");
+    alterarSalario(&funcionarios,"Pedro",920.4);
+    imprimirFuncionario(&funcionarios);
     
 
     return 0;

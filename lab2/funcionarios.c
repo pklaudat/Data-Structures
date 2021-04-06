@@ -4,16 +4,28 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* dependencias */
 #include "funcionarios.h"
 
 
-void alterarCargo(listaFuncionarios* a, char novoCargo[50]) {
-
+void alterarCargo(listaFuncionarios* lista, char* name, char* novoCargo) {
+    int posicao;
+    posicao = buscaFuncionario(lista,name);
+ 
+    if (posicao >= 0) {
+        strcpy(lista->funcionarios[posicao].cargo, novoCargo);
+    }
 }
 
-void alterarSalario(listaFuncionarios* a, float novoSalario) {
+void alterarSalario(listaFuncionarios* lista,char* name, float novoSalario) {
+    int posicao;
+    posicao = buscaFuncionario(lista,name);
+
+    if (posicao >= 0) {
+        lista->funcionarios[posicao].salario = novoSalario;
+    }
 
 }
 
@@ -37,6 +49,8 @@ void imprimirFuncionario(listaFuncionarios* dados) {
 
 void criarFuncionario(listaFuncionarios* dados) {
 
+    fflush(stdin);
+
     if (dados->nroElem < TAMANHO_FUNCIONARIOS) {
         printf("Digite o nome do novo funcionario: ");
         scanf("%s",&dados->funcionarios[dados->nroElem].nome);
@@ -46,7 +60,6 @@ void criarFuncionario(listaFuncionarios* dados) {
         scanf("%s",&dados->funcionarios[dados->nroElem].data.mes);
         printf("Digite o ano: ");
         scanf("%s",&dados->funcionarios[dados->nroElem].data.ano);
-        fflush(stdin); 
         printf("Digite o cargo: ");
         scanf("%s",&dados->funcionarios[dados->nroElem].cargo);
         printf("Digite o salario: ");
@@ -72,7 +85,26 @@ void salarioTotal(listaFuncionarios* dados) {
 
 }
 
-void buscaFuncionario(listaFuncionarios* dados, char nomeprocurado) {
+int buscaFuncionario(listaFuncionarios* dados, char* nomeprocurado) {
+    int i = 0;
+    int encontrado = 0;
+    int posicao;
+    
+    while (i < dados->nroElem) {
+        if (strcmp(nomeprocurado,dados->funcionarios[i].nome) == 0) {
+            encontrado = 1;
+            posicao = i;
+            i = dados->nroElem;
+        }
+        i++;
+    }
+    if (!encontrado) {   
+        printf("\nO funcionario %s nao existe !!!\n",nomeprocurado);
+        return -1;
+    } else {
+        printf("\n%s ==  %.2s/%.2s/%s == %s == %f ", nomeprocurado, dados->funcionarios[posicao].data.dia, dados->funcionarios[posicao].data.mes, dados->funcionarios[posicao].data.ano, dados->funcionarios[posicao].cargo, dados->funcionarios[posicao].salario);
+        return posicao;
+    }
 
 }
 

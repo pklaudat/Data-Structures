@@ -4,7 +4,7 @@
 */
 #include <stdint.h>
 
-#define TAMANHO_FUNCIONARIOS 2
+#define TAMANHO_FUNCIONARIOS 1
 
 typedef struct {
     char dia[2];
@@ -26,9 +26,9 @@ typedef struct {
 
 
 
-void alterarCargo(listaFuncionarios* a, char novoCargo[50]);
+void alterarCargo(listaFuncionarios* lista, char* name, char* novoCargo);
 
-void alterarSalario(listaFuncionarios* a, float novoSalario);
+void alterarSalario(listaFuncionarios* lista, char* name, float novoSalario);
 
 void imprimirFuncionario(listaFuncionarios* dados);
 
@@ -36,5 +36,5 @@ void criarFuncionario(listaFuncionarios* dados);
 
 void salarioTotal(listaFuncionarios* dados);
 
-void buscaFuncionario(listaFuncionarios* dados, char nomeprocurado);
+int buscaFuncionario(listaFuncionarios* dados, char* nomeprocurado);
 
