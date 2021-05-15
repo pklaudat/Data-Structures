@@ -1,8 +1,15 @@
-/* Implementação TDA para grafo */
+#ifndef _GRAFO_H_
+#define _GRAFO_H_
 
+/* Implementação TDA para grafo */
 typedef int bool;
 typedef int TIPOPESO;
 
+#define true 1
+#define false 0
+
+
+/* Implementação de Grafo por lista de adjacências */
 typedef struct adjacencia{
 	int vertice;
 	TIPOPESO peso;
@@ -10,8 +17,7 @@ typedef struct adjacencia{
 } ADJACENCIA;
 
 typedef struct vertice {
-	/* Dados são armazenados nessa estrutura */
-	ADJACENCIA *cab;
+	ADJACENCIA *partida;
 } VERTICE;
 
 typedef struct grafo {
@@ -20,12 +26,22 @@ typedef struct grafo {
 	VERTICE *adj;
 } GRAFO;
 
+/* Cria Grafo com número de vértices definidos
+@ input: v - número de vértices do gŕafico
+*/
+GRAFO *criaGrafo (int v);
 
-GRAFO *criaGrafo(int v);
+/* Cria aresta para o Grafo 
+@inputs: gr - Grafo
+		 vi - vertice inicial
+		 vf - vertice final
+		 peso - peso                                    */
+bool criaAresta (GRAFO *gr, int vi, int vf, TIPOPESO peso);
 
-ADJACENCIA *criaAdjacencia(int v, int peso);
+/* Imprime o Grafo em formato de matriz de adjacências 
+@input: gr - Grafo                                      */
+void imprimeGrafo (GRAFO *gr);
+void imprimeNumVertices (GRAFO *pGrafo);
+void imprimeNumArestas (GRAFO *pGrafo);
 
-bool criaAresta(GRAFO *gr, int vi, int vf, TIPOPESO peso);
-
-void imprime(GRAFO *gr);
-
+#endif /* _GRAFO_H_ */
